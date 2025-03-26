@@ -8,8 +8,8 @@
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate { //Voltando para o nível da aplicação como um todo!
+ //No iOS 12 e inferiores, esse arquivo era responsável pela configuraçao da window e da rootViewController, mas do 13 em idiante, ele passou a ser chamado apenas em alguns ciclos da aplicacação como um todo. Lida com apps que usam multiplas scenes (ipad), abrir telas específicas a partir de URLs, receber avisos de memória, gerenciar push notifications, responder a mudanças de ambiente, etc.
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
