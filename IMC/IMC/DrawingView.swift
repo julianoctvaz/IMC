@@ -9,6 +9,8 @@ import UIKit
 
 class DrawingView: UIView {
 
+ //poderia usar path/Bezier
+    
     var corAtual: UIColor = .red
 
     override func draw(_ rect: CGRect) {
