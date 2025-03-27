@@ -39,6 +39,7 @@ class CustomLabelView: UIView {
 //        Aqui estamos setando dentro da CustomLabelView, apenas o layout inicial da labelTitle dentro da view dela mesma!!!
 //        Mas a CustomLabelView como componente inteiro ainda provavelmente vai precisar ser posicionada com Auto Layout no lugar onde você vai usá-la (ex: em uma ViewController) ou outra UIView.
         NSLayoutConstraint.activate([
+            //Exemplo teste se mudar aqui pode mudar a configuracao do lado de fora
             labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
             labelTitle.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
