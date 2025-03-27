@@ -1,5 +1,5 @@
 //
-//  UIViewController.swift
+//  IMCViewControllerWIthoutScroll.swift
 //  IMC
 //
 //  Created by Juliano on 17/03/25.
@@ -12,7 +12,7 @@ import UIKit
 //    case lb
 //}
 
-class IMCViewController: UIViewController {
+class IMCViewControllerWIthoutScroll: UIViewController {
     
     // MARK: - Properties
     
@@ -27,8 +27,8 @@ class IMCViewController: UIViewController {
     @AutoLayoutView var calculateButton: UIButton
     @AutoLayoutView var subtitleResultLabel: UILabel
     @AutoLayoutView var imageResult: UIImageView
-    @AutoLayoutView var verticalScrollView: UIScrollView
-    @AutoLayoutView var containerView: UIView
+//    @AutoLayoutView var verticalScrollView: UIScrollView
+//    @AutoLayoutView var containerView: UIView
     
     //Converter
     @AutoLayoutView var massSliderLabel: UILabel
@@ -71,56 +71,58 @@ class IMCViewController: UIViewController {
     private func addSubViews() {
         
         
-        view.addSubview(verticalScrollView)
-        verticalScrollView.addSubview(containerView)
+//        view.addSubview(verticalScrollView)
+//        verticalScrollView.addSubview(containerView)
 
-        containerView.addSubview(IMCtitle)
+        view.addSubview(IMCtitle)
         
-        containerView.addSubview(converterLabel)
-        containerView.addSubview(switchConverter)
+        view.addSubview(converterLabel)
+        view.addSubview(switchConverter)
         
 //        #desafio Stack
 //        containerView.addSubview(converterAndSwitchStack)
 //        converterAndSwitchStack.addArrangedSubview(converterLabel)
 //        converterAndSwitchStack.addArrangedSubview(switchConverter)
         
-        containerView.addSubview(massSlider)
-        containerView.addSubview(massSliderLabel)
-        containerView.addSubview(heighSlider)
-        containerView.addSubview(heighSliderLabel)
-        containerView.addSubview(calculateButton)
-        containerView.addSubview(subtitleResultLabel)
-        containerView.addSubview(imageResult)
+        view.addSubview(massSlider)
+        view.addSubview(massSliderLabel)
+        view.addSubview(heighSlider)
+        view.addSubview(heighSliderLabel)
+        view.addSubview(calculateButton)
+        view.addSubview(subtitleResultLabel)
+//        view.addSubview(imageResult)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
      
-            verticalScrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            verticalScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            verticalScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            verticalScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            verticalScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+//            verticalScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            verticalScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            verticalScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            
+//            containerView.topAnchor.constraint(equalTo: verticalScrollView.topAnchor),
+//            containerView.bottomAnchor.constraint(equalTo: verticalScrollView.bottomAnchor),
+//            containerView.leadingAnchor.constraint(equalTo: verticalScrollView.leadingAnchor),
+//            containerView.trailingAnchor.constraint(equalTo: verticalScrollView.trailingAnchor),
+//            containerView.widthAnchor.constraint(equalTo: verticalScrollView.widthAnchor),
             
-            containerView.topAnchor.constraint(equalTo: verticalScrollView.topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: verticalScrollView.bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: verticalScrollView.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: verticalScrollView.trailingAnchor),
-            containerView.widthAnchor.constraint(equalTo: verticalScrollView.widthAnchor),
             
-            
-            IMCtitle.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 64),
-            IMCtitle.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            IMCtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
+            IMCtitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             IMCtitle.widthAnchor.constraint(equalToConstant: 152),
+            IMCtitle.heightAnchor.constraint(equalToConstant: 40),
             
             // aqui um EMBAIXO UM DO OUTRO
             converterLabel.topAnchor.constraint(equalTo: IMCtitle.bottomAnchor, constant: 16),
-            converterLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            converterLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             converterLabel.widthAnchor.constraint(equalToConstant: 152),
             converterLabel.heightAnchor.constraint(equalToConstant: 40),
             
             switchConverter.topAnchor.constraint(equalTo: converterLabel.bottomAnchor, constant: 16),
-            switchConverter.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            switchConverter.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            switchConverter.heightAnchor.constraint(equalToConstant: 32),
             
            // aqui de LADINHO
 //            converterLabel.topAnchor.constraint(equalTo: IMCtitle.bottomAnchor, constant: 16),
@@ -145,45 +147,52 @@ class IMCViewController: UIViewController {
 //            converterAndSwitchStack.widthAnchor.constraint(equalToConstant: 164),
             
             massSlider.topAnchor.constraint(equalTo: switchConverter.bottomAnchor, constant: 32),
-            massSlider.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            massSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             massSlider.widthAnchor.constraint(equalToConstant: 152),
             massSlider.heightAnchor.constraint(equalToConstant: 40),
             
             massSliderLabel.topAnchor.constraint(equalTo: massSlider.bottomAnchor, constant: 32),
-            massSliderLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            massSliderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             massSliderLabel.widthAnchor.constraint(equalToConstant: 152),
             massSliderLabel.heightAnchor.constraint(equalToConstant: 40),
             
             heighSlider.topAnchor.constraint(equalTo: massSliderLabel.bottomAnchor,constant: 16),
-            heighSlider.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            heighSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             heighSlider.widthAnchor.constraint(equalToConstant: 152),
             heighSlider.heightAnchor.constraint(equalToConstant: 40),
             
             heighSliderLabel.topAnchor.constraint(equalTo: heighSlider.bottomAnchor, constant: 32),
-            heighSliderLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            heighSliderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             heighSliderLabel.widthAnchor.constraint(equalToConstant: 152),
             heighSliderLabel.heightAnchor.constraint(equalToConstant: 40),
             
             calculateButton.topAnchor.constraint(equalTo: heighSliderLabel.bottomAnchor,constant: 32),
-            calculateButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            calculateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             calculateButton.widthAnchor.constraint(equalToConstant: 128),
             calculateButton.heightAnchor.constraint(equalToConstant: 32),
             
-            subtitleResultLabel.widthAnchor.constraint(equalToConstant: 150),
-            subtitleResultLabel.topAnchor.constraint(equalTo: calculateButton.bottomAnchor, constant: 32),
-            subtitleResultLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             
-            imageResult.topAnchor.constraint(equalTo: subtitleResultLabel.bottomAnchor, constant: 32),
-            imageResult.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            imageResult.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 40)
+            subtitleResultLabel.widthAnchor.constraint(equalToConstant: 150),
+            subtitleResultLabel.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 32),
+            //esa constrait faz o botao nao funciona pois ele fica fora da tela
+            
+            // Aqui tem q fazer umas correcoes:
+            
+//            justicar o uso da scroll view
+            
+            
+            subtitleResultLabel.topAnchor.constraint(equalTo: calculateButton.bottomAnchor, constant: 10),
+            subtitleResultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+//            imageResult.topAnchor.constraint(equalTo: subtitleResultLabel.bottomAnchor, constant: 32),
+//            imageResult.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            imageResult.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40)
         ])
     }
     
     private func setupUIStyle() {
-//        view.backgroundColor = .red
-//        se criamos ums UIView para colocar dentro para desinchar a controller poderiamos colocar view = ViewExternaQueCriei
-        
-        verticalScrollView.backgroundColor = .systemIndigo
+        view.backgroundColor = .systemIndigo
+//        verticalScrollView.backgroundColor = .systemIndigo
         
         IMCtitle.textAlignment = .center
         IMCtitle.font = UIFont(name: "HelveticaNeue", size: 30)
@@ -338,5 +347,5 @@ class IMCViewController: UIViewController {
 }
 
 #Preview {
-    IMCViewController(mass: 10, height: 20)
+    IMCViewControllerWIthoutScroll(mass: 10, height: 20)
 }
