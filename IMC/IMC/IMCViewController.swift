@@ -281,6 +281,7 @@ class IMCViewController: UIViewController {
         //se nao quiseremos colocar o nosso enviante aqui, poderiamos fazer direto com o componente
 //        if switchConverter.isOn {
         if sender.isOn {
+            showSwitchAlert()
             mass = kgToLibra(mass)
             
         } else {
@@ -291,8 +292,8 @@ class IMCViewController: UIViewController {
 
     // MARK: - Alerts
 
-    private func showErrorAlert() {
-        let alert = UIAlertController(title: "Erro nos dados", message: "Algo errado aconteceu. \nConfira seus dados.", preferredStyle: .alert)
+    private func showSwitchAlert() {
+        let alert = UIAlertController(title: "ATENCAO", message: "A unidade de massa agora é o Libra.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         present(alert, animated: true)
     }
