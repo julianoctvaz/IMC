@@ -21,7 +21,7 @@ class CustomLabelView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        // 🔐 O required init?(coder:) é necessário porque o UIKit pode carregar views a partir de Storyboard/XIB, e essa inicialização é obrigatória. Mas não utilizaremos! Então a gente exibe um erro caso seja chamado.
+        //  O required init?(coder:) é necessário porque o UIKit pode carregar views a partir de Storyboard/XIB, e essa inicialização é obrigatória. Mas não utilizaremos! Então a gente exibe um erro caso seja chamado.
         fatalError("init(coder:) has not been implemented")
     }
     
