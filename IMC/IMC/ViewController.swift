@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 
     
     // Uma view personalizada com uma label amarela (por exemplo)
-    var labelYellow: UIView = CustomLabelView() // A CustomLabelView precisa ter `translatesAutoresizingMaskIntoConstraints = false` setado externamente
+    var labelYellow: UIView = CustomLabelView() // A CustomLabelView precisa ter `translatesAutoresizingMaskIntoConstraints = false` setado externamente se nao tiver no init interno
     
     // MARK: - StackView
     
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
 //        ])
         
         // Para garantir que a custom view também se comporte bem no stack:
-        labelYellow.translatesAutoresizingMaskIntoConstraints = false
+        labelYellow.translatesAutoresizingMaskIntoConstraints = false // se nao tive no init interno precisa colocar aqui fora
         
 //        NSLayoutConstraint.activate([ // tstar com equalSpacing na distribuicao e ver como quebra
 //            labelYellow.widthAnchor.constraint(equalToConstant: 100),
