@@ -56,12 +56,12 @@ class IMCViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-//
-//    lazy var verticalScrollView: UIScrollView = {
-//        let view = UIScrollView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
+
+    lazy var verticalScrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     lazy var containerView: UIStackView = {
         let view = UIStackView()
@@ -115,6 +115,7 @@ class IMCViewController: UIViewController {
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         setupView()
     }
     
@@ -124,18 +125,20 @@ class IMCViewController: UIViewController {
         addSubViews()
         setupConstraints()
         setupUIStyle()
-//        setupActions()
+        setupActions()
     }
     
     private func addSubViews() {
         
-        view.addSubview(containerView)
+        view.addSubview(verticalScrollView)
+        
+        verticalScrollView.addSubview(containerView)
 
         containerView.addArrangedSubview(IMCtitle)
         
-        containerView.addArrangedSubview(converterLabel)
-        containerView.addArrangedSubview(switchConverter)
-        
+//        containerView.addArrangedSubview(converterLabel)
+//        containerView.addArrangedSubview(switchConverter)
+//        
         containerView.addArrangedSubview(converterAndSwitchStack)
         converterAndSwitchStack.addArrangedSubview(converterLabel)
         converterAndSwitchStack.addArrangedSubview(switchConverter)
@@ -152,11 +155,16 @@ class IMCViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            containerView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            verticalScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            verticalScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            verticalScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            verticalScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            containerView.topAnchor.constraint(equalTo: verticalScrollView.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: verticalScrollView.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: verticalScrollView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: verticalScrollView.trailingAnchor),
+            containerView.widthAnchor.constraint(equalTo: verticalScrollView.widthAnchor),
             
             massSlider.widthAnchor.constraint(equalToConstant: 300),
             heighSlider.widthAnchor.constraint(equalToConstant: 300),
@@ -168,7 +176,7 @@ class IMCViewController: UIViewController {
         view.backgroundColor = .systemIndigo
         
         containerView.axis = .vertical
-        containerView.spacing = 16
+        containerView.spacing = 50
         containerView.distribution = .equalSpacing
         containerView.alignment = .center
         
@@ -207,7 +215,7 @@ class IMCViewController: UIViewController {
         massSliderLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         massSliderLabel.textColor = .white
         
-        heighSliderLabel.text = "Valor: 75"
+        heighSliderLabel.text = "Valor: 75 cm"
         heighSliderLabel.textAlignment = .center
         heighSliderLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         heighSliderLabel.textColor = .white
@@ -227,14 +235,70 @@ class IMCViewController: UIViewController {
     
     // MARK: - Actions
 
+    private func setupActions() {
+        massSlider.addTarget(self, action: #selector(slidersValueChanged), for: .valueChanged)
+        heighSlider.addTarget(self, action: #selector(slidersValueChanged), for: .valueChanged)
+        
+        switchConverter.addTarget(self, action: #selector(didToggleSwitch), for: .valueChanged)
+        
+        calculateButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
+    
+   @objc private func slidersValueChanged() {
+        let unidade = switchConverter.isOn ? "lb" : "kg"
+        massSliderLabel.text = "Valor: \(Int(massSlider.value)) \(unidade)"
+        heighSliderLabel.text = "Valor: \(Int(heighSlider.value)) cm"
+    }
+    
+    @objc private func didToggleSwitch(sender: UISwitch) {
+        if sender.isOn {
+            showSwitchAlert()
+            mass = kgToLibra(mass)
+            massSlider.value = Float(mass)
+        } else { //desativando o doce
+            mass = LibratoKg(mass)
+            massSlider.value = Float(mass)
+        }
+    }
+    
+    @objc private func didTapButton() {
+        let resultIMC = calculateIMC(mass, height)
+        let names = changeTextAndImageResult(resultIMC)
+        subtitleResultLabel.text = names.subtitleResultLabel
+        subtitleResultLabel.isHidden = false
+        imageResult.image = UIImage(named: names.imageName)
+        
+    }
 
     // MARK: - Alerts
+    
+    private func showSwitchAlert() {
+        let alert = UIAlertController(
+            title: "ATENSSAO",
+            message: "Voce está mudando de kg para librannn!!!",
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default
+            )
+        )
+        
+        present(alert, animated: true)
+    }
 
     
     // MARK: - IMC Functions
 
     func calculateIMC(_ mass: Double, _ height: Double) -> Double {
-        return 0.0
+        if switchConverter.isOn {
+             // Fórmula adaptada para libras e altura em cm
+             return mass / pow(height, 2) * 703.0
+         } else {
+             // Fórmula padrão em kg e altura em cm
+             return mass / pow(height, 2) * 10000.0
+         }
     }
     
     func changeTextAndImageResult(_ resultIMC: Double) -> (subtitleResultLabel: String, imageName: String) {

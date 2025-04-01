@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let rootNavigationController = IMCViewController(mass: 50, height: 75)
         let rootNavigationController = IMCViewController(mass: 50, height: 75)
       
-        self.window?.rootViewController = rootNavigationController
+        self.window?.rootViewController = ExemploTextfieldViewController() //rootNavigationController
         self.window?.makeKeyAndVisible()
     }
 
