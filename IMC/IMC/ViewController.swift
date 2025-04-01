@@ -10,24 +10,26 @@ import UIKit
 class ViewController: UIViewController {
     // MARK: - Properties
     
-    lazy var imcLabel: UILabel = {
+    lazy var label: UILabel = {
+        
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
     
-    lazy var imcLabel2: UILabel = {
+    lazy var label2: UILabel = {
+        
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
     
-    lazy var imcLabel3: UIView  = {
-        let lb = IMCLabel3View()
-        lb.translatesAutoresizingMaskIntoConstraints = false
-        return lb
-    } ()
-    
+//    var customLabel = CustomLabel()
+    lazy var customLb: CustomLabel = {
+        let cl = CustomLabel()
+//        cl.translatesAutoresizingMaskIntoConstraints = false
+       return cl
+    }()
     
     // MARK: - Life Cycle
 
@@ -35,40 +37,34 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .blue
         
-        setupUIStyle(of: imcLabel)
-        setupUIStyle(of: imcLabel2, with: .red)
-        
+        setupUIStyle(of: label)
+        setupUIStyle(of: label2, with: .green)
+                
         setupViewHierarchy()
         
-        setupConstraints()
+        setupConstraints(of: label)
+        setupConstraints(of: label2, with: 80)
+        setupConstraints(of: customLb, with: -80)
 
     }
     
     // MARK: - UI Functions
     
-    fileprivate func setupViewHierarchy() {
-        view.addSubview(imcLabel)
-        view.addSubview(imcLabel2)
-        view.addSubview(imcLabel3)
+        private func setupViewHierarchy() {
+        view.addSubview(label)
+        view.addSubview(label2)
+        view.addSubview(customLb)
     }
     
-    private func setupUIStyle(of label: UILabel, with color: UIColor = .white) {
-        label.text = "IMC"
-        label.textColor = color
-        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+    private func setupUIStyle(of lb: UILabel, with color: UIColor = .red) {
+        lb.textColor = color
+        lb.font = .systemFont(ofSize: 30, weight: .bold)
+        lb.text = "IMC"
     }
     
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            imcLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            imcLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            
-            imcLabel2.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 60),
-            imcLabel2.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            
-            imcLabel3.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: -60),
-            imcLabel3.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-        ])
+    private func setupConstraints(of label: UIView, with constant: CGFloat = 0) {
+        label.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: constant).isActive = true
+        label.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
     }
 }
 
