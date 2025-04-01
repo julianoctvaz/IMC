@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
 //        let rootNavigationController = IMCViewController(mass: 50, height: 75)
-        let rootNavigationController = IMCViewControllerWIthoutScroll(mass: 50, height: 75)
+        let rootNavigationController = IMCViewController(mass: 50, height: 75)
       
         self.window?.rootViewController = rootNavigationController
         self.window?.makeKeyAndVisible()

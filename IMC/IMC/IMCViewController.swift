@@ -21,23 +21,83 @@ class IMCViewController: UIViewController {
     
     // MARK: - UI Elements
     
-    @AutoLayoutView var IMCtitle: UILabel
-    @AutoLayoutView var massSlider: UISlider
-    @AutoLayoutView var heighSlider: UISlider
-    @AutoLayoutView var calculateButton: UIButton
-    @AutoLayoutView var subtitleResultLabel: UILabel
-    @AutoLayoutView var imageResult: UIImageView
-    @AutoLayoutView var verticalScrollView: UIScrollView
-    @AutoLayoutView var containerView: UIView
-    
-    //Converter
-    @AutoLayoutView var massSliderLabel: UILabel
-    @AutoLayoutView var heighSliderLabel: UILabel
-    @AutoLayoutView var converterLabel: UILabel
-    @AutoLayoutView var switchConverter: UISwitch
-    
-//    Desafio Stack
-//    @AutoLayoutView var converterAndSwitchStack: UIStackView
+    lazy var IMCtitle: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var massSlider: UISlider = {
+        let view = UISlider()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var heighSlider: UISlider = {
+        let view = UISlider()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var calculateButton: UIButton = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var subtitleResultLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var imageResult: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+//
+//    lazy var verticalScrollView: UIScrollView = {
+//        let view = UIScrollView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+
+    lazy var containerView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var massSliderLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var heighSliderLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var converterLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var switchConverter: UISwitch = {
+        let view = UISwitch()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy var converterAndSwitchStack: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     
     // MARK: - Initializer
@@ -58,132 +118,59 @@ class IMCViewController: UIViewController {
         setupView()
     }
     
-    
     // MARK: - Setup UI
     
     private func setupView() {
         addSubViews()
         setupConstraints()
         setupUIStyle()
-        setupActions()
+//        setupActions()
     }
     
     private func addSubViews() {
         
-        
-        view.addSubview(verticalScrollView)
-        verticalScrollView.addSubview(containerView)
+        view.addSubview(containerView)
 
-        containerView.addSubview(IMCtitle)
+        containerView.addArrangedSubview(IMCtitle)
         
-        containerView.addSubview(converterLabel)
-        containerView.addSubview(switchConverter)
+        containerView.addArrangedSubview(converterLabel)
+        containerView.addArrangedSubview(switchConverter)
         
-//        #desafio Stack
-//        containerView.addSubview(converterAndSwitchStack)
-//        converterAndSwitchStack.addArrangedSubview(converterLabel)
-//        converterAndSwitchStack.addArrangedSubview(switchConverter)
+        containerView.addArrangedSubview(converterAndSwitchStack)
+        converterAndSwitchStack.addArrangedSubview(converterLabel)
+        converterAndSwitchStack.addArrangedSubview(switchConverter)
         
-        containerView.addSubview(massSlider)
-        containerView.addSubview(massSliderLabel)
-        containerView.addSubview(heighSlider)
-        containerView.addSubview(heighSliderLabel)
-        containerView.addSubview(calculateButton)
-        containerView.addSubview(subtitleResultLabel)
-        containerView.addSubview(imageResult)
+        containerView.addArrangedSubview(massSlider)
+        containerView.addArrangedSubview(massSliderLabel)
+        containerView.addArrangedSubview(heighSlider)
+        containerView.addArrangedSubview(heighSliderLabel)
+        containerView.addArrangedSubview(calculateButton)
+        containerView.addArrangedSubview(subtitleResultLabel)
+        containerView.addArrangedSubview(imageResult)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
-     
-            verticalScrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            verticalScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            verticalScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            verticalScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            containerView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
-            containerView.topAnchor.constraint(equalTo: verticalScrollView.topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: verticalScrollView.bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: verticalScrollView.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: verticalScrollView.trailingAnchor),
-            containerView.widthAnchor.constraint(equalTo: verticalScrollView.widthAnchor),
+            massSlider.widthAnchor.constraint(equalToConstant: 300),
+            heighSlider.widthAnchor.constraint(equalToConstant: 300),
             
-            
-            IMCtitle.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 64),
-            IMCtitle.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            IMCtitle.widthAnchor.constraint(equalToConstant: 152),
-            
-            // aqui um EMBAIXO UM DO OUTRO
-            converterLabel.topAnchor.constraint(equalTo: IMCtitle.bottomAnchor, constant: 16),
-            converterLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            converterLabel.widthAnchor.constraint(equalToConstant: 152),
-            converterLabel.heightAnchor.constraint(equalToConstant: 40),
-            
-            switchConverter.topAnchor.constraint(equalTo: converterLabel.bottomAnchor, constant: 16),
-            switchConverter.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            
-           // aqui de LADINHO
-//            converterLabel.topAnchor.constraint(equalTo: IMCtitle.bottomAnchor, constant: 16),
-//            converterLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
-            // alinhado à esquerda
-            
-            //alinhando no centro
-//            converterLabel.topAnchor.constraint(equalTo: IMCtitle.bottomAnchor, constant: 16),
-//            converterLabel.leadingAnchor.constraint(equalTo: IMCtitle.leadingAnchor, constant: -30),
-//            switchConverter.trailingAnchor.constraint(equalTo: IMCtitle.trailingAnchor, constant: 30),
-            
-            
-            //DESAFIO STACK
-//            converterLabel.widthAnchor.constraint(equalToConstant: 152),
-//            converterLabel.heightAnchor.constraint(equalToConstant: 40),
-//
-//            switchConverter.centerYAnchor.constraint(equalTo: converterLabel.centerYAnchor), // mesmo centro vertical
-//            switchConverter.leadingAnchor.constraint(equalTo: converterLabel.trailingAnchor, constant: 12), // do lado direito da label
-
-//            converterAndSwitchStack.topAnchor.constraint(equalTo: IMCtitle.bottomAnchor, constant: 16),
-//            converterAndSwitchStack.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-//            converterAndSwitchStack.widthAnchor.constraint(equalToConstant: 164),
-            
-            massSlider.topAnchor.constraint(equalTo: switchConverter.bottomAnchor, constant: 32),
-            massSlider.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            massSlider.widthAnchor.constraint(equalToConstant: 152),
-            massSlider.heightAnchor.constraint(equalToConstant: 40),
-            
-            massSliderLabel.topAnchor.constraint(equalTo: massSlider.bottomAnchor, constant: 32),
-            massSliderLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            massSliderLabel.widthAnchor.constraint(equalToConstant: 152),
-            massSliderLabel.heightAnchor.constraint(equalToConstant: 40),
-            
-            heighSlider.topAnchor.constraint(equalTo: massSliderLabel.bottomAnchor,constant: 16),
-            heighSlider.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            heighSlider.widthAnchor.constraint(equalToConstant: 152),
-            heighSlider.heightAnchor.constraint(equalToConstant: 40),
-            
-            heighSliderLabel.topAnchor.constraint(equalTo: heighSlider.bottomAnchor, constant: 32),
-            heighSliderLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            heighSliderLabel.widthAnchor.constraint(equalToConstant: 152),
-            heighSliderLabel.heightAnchor.constraint(equalToConstant: 40),
-            
-            calculateButton.topAnchor.constraint(equalTo: heighSliderLabel.bottomAnchor,constant: 32),
-            calculateButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            calculateButton.widthAnchor.constraint(equalToConstant: 128),
-            calculateButton.heightAnchor.constraint(equalToConstant: 32),
-            
-            subtitleResultLabel.widthAnchor.constraint(equalToConstant: 150),
-            subtitleResultLabel.topAnchor.constraint(equalTo: calculateButton.bottomAnchor, constant: 32),
-            subtitleResultLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            
-            imageResult.topAnchor.constraint(equalTo: subtitleResultLabel.bottomAnchor, constant: 32),
-            imageResult.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            imageResult.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 40)
         ])
     }
     
     private func setupUIStyle() {
-//        view.backgroundColor = .red
-//        se criamos ums UIView para colocar dentro para desinchar a controller poderiamos colocar view = ViewExternaQueCriei
+        view.backgroundColor = .systemIndigo
         
-        verticalScrollView.backgroundColor = .systemIndigo
+        containerView.axis = .vertical
+        containerView.spacing = 16
+        containerView.distribution = .equalSpacing
+        containerView.alignment = .center
         
         IMCtitle.textAlignment = .center
         IMCtitle.font = UIFont(name: "HelveticaNeue", size: 30)
@@ -200,14 +187,11 @@ class IMCViewController: UIViewController {
         converterLabel.backgroundColor = .yellow
         converterLabel.textAlignment = .center
         
-//        Desafio STACK
-//        converterAndSwitchStack.translatesAutoresizingMaskIntoConstraints = false
-//        converterAndSwitchStack.axis = .horizontal
-//        converterAndSwitchStack.spacing = 12
-//        converterAndSwitchStack.alignment = .center
-//        converterAndSwitchStack.distribution = .equalSpacing
+        converterAndSwitchStack.axis = .horizontal
+        converterAndSwitchStack.spacing = 16
+        converterAndSwitchStack.alignment = .center
+        converterAndSwitchStack.distribution = .equalSpacing
 
-        
         massSlider.backgroundColor = .systemGray2
         massSlider.minimumValue = 0
         massSlider.maximumValue = 200 // kg
@@ -240,76 +224,17 @@ class IMCViewController: UIViewController {
         imageResult.contentMode = .scaleAspectFill
     }
     
-    private func setupActions() {
-        //sliders
-        massSlider.addTarget(self, action: #selector(slidersValueChanged), for: .valueChanged)
-        heighSlider.addTarget(self, action: #selector(slidersValueChanged), for: .valueChanged)
-        
-        //switch
-//        switchConverter.addTarget(self, action: #selector(didToggleSwitch(_:)), for: .valueChanged)
-        //opcao de escrita...
-        switchConverter.addTarget(self, action: #selector(didToggleSwitch), for: .valueChanged)
-        //botao
-        calculateButton.addTarget(self, action: #selector(didTapCalculateButton), for: .touchUpInside)
-    
-    }
-    
-    private func updateUI() {
-        massSlider.value = Float(mass)
-        let unidade = switchConverter.isOn ? "lb" : "kg"
-        massSliderLabel.text = "Valor: \(Int(massSlider.value)) \(unidade)"
-        
-    }
     
     // MARK: - Actions
-    
-    @objc private func didTapCalculateButton() {
 
-//        showErrorAlert() // exemplo alerta
-        
-        let resultIMC = calculateIMC(mass, height)
-        let name = changeTextAndImageResult(resultIMC)
-        subtitleResultLabel.text = name.subtitleResultLabel
-        imageResult.image = UIImage(named: name.imageName)
-        subtitleResultLabel.isHidden = false
-    }
-    
-    @objc func slidersValueChanged() {
-        massSliderLabel.text = "Valor: \(Int(massSlider.value))"
-        heighSliderLabel.text = "Valor: \(Int(heighSlider.value))"
-      }
-    
-    @objc private func didToggleSwitch(_ sender: UISwitch) {
-        //se nao quiseremos colocar o nosso enviante aqui, poderiamos fazer direto com o componente
-//        if switchConverter.isOn {
-        if sender.isOn {
-            showSwitchAlert()
-            mass = kgToLibra(mass)
-            
-        } else {
-            mass = LibratoKg(mass)
-        }
-        updateUI()
-    }
 
     // MARK: - Alerts
 
-    private func showSwitchAlert() {
-        let alert = UIAlertController(title: "ATENCAO", message: "A unidade de massa agora é o Libra.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        present(alert, animated: true)
-    }
     
     // MARK: - IMC Functions
 
     func calculateIMC(_ mass: Double, _ height: Double) -> Double {
-        if switchConverter.isOn {
-            // Fórmula adaptada para libras e altura em cm
-            return mass / pow(height, 2) * 703.0
-        } else {
-            // Fórmula padrão em kg e altura em cm
-            return mass / pow(height, 2) * 10000.0
-        }
+        return 0.0
     }
     
     func changeTextAndImageResult(_ resultIMC: Double) -> (subtitleResultLabel: String, imageName: String) {
