@@ -19,8 +19,6 @@ class IMCLabel3View: UIView {
     // MARK: - Initializers
     
     override init(frame: CGRect) {
-  //se nao setar o translate auto resizing mask aqui para falso temq ue setar onde incorporar!!
-
         super.init(frame: frame)
         setupView()
     }
@@ -47,6 +45,7 @@ class IMCLabel3View: UIView {
     }
     
     private func setupView() {
+        //se nao setar o translate auto resizing mask em self aqui para falso tem q ue setar onde incorporar!!
         setupUIStyle(of: imcLabel3, with: .green)
         addSubview(imcLabel3)
         setupConstraints()
