@@ -15,7 +15,6 @@ class CustomLabelView: UIView {
     }()
     
     override init(frame: CGRect) {
-        //se nao setar o translate auto resizing mask aqui para falso temq ue setar onde incorporar!!
         // É o inicializador que usamos de forma padrão da classe UIView quando você cria uma view programaticamente, ou seja, via código, sem usar Storyboard ou XIB.
         super.init(frame: frame)
         setupView()
@@ -48,6 +47,7 @@ class CustomLabelView: UIView {
     
     private func setupView() {
         // Adiciona subviews, constraints, etc
+        //se nao setar o translate auto resizing mask em self aqui para falso tem q ue setar onde incorporar!!
         setupUIStyle(of: labelTitle)
         addSubview(labelTitle)
         setupConstraints()
