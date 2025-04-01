@@ -17,7 +17,7 @@ class CustomLabel: UIView {
     
     
     fileprivate func setupView() {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = false // como setamos aqui nao precisamos setar onde incorporar
         setupUIStyle(of: label, with: .yellow)
         addSubview(label)
         setupConstraints(of: label)
