@@ -107,10 +107,13 @@ class IMCViewController: UIViewController {
         self.mass = mass
         self.height = height
         super.init(nibName: nil, bundle: nil)
+        //tenta carregar um xib mas nao temos, tb chamado de nib importente vir antes pois nao podemos definir self dps de instanciar nossa VC
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        d")
+    // caso fossemos serialziar algum storyboard
     }
     
     // MARK: - Life Cycle
