@@ -106,11 +106,12 @@ class IMCViewController: UIViewController {
     init(mass: Double, height: Double) {
         self.mass = mass
         self.height = height
-        super.init(nibName: nil, bundle: nil) // tem que vir depois( se for inicializar xib)
+        super.init(nibName: nil, bundle: nil) // tem que vir depois( se for inicializar xib) pois precisamos setar as props de self antes de incialiar a nossa VC
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        // seria para carregar um storyboard ams nao temos
     }
     
     // MARK: - Life Cycle
