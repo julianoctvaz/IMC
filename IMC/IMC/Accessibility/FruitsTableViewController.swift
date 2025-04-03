@@ -8,7 +8,7 @@
 
 import UIKit
 
-//✅ Quando vale a pena usar UIViewController em vez dos controllers especializados?
+//✅ Sobre nossa classe herdada: Quando vale a pena usar UIViewController em vez dos controllers especializados?
 //
 //Use UIViewController quando:
 //Você precisa mais controle sobre o layout (ex: colocar botões, labels, outras views fora da tabela/coleção).

@@ -5,7 +5,6 @@
 //  Created by Juliano on 03/04/25.
 //
 
-
 //⚠️ Casos com erro proposital:
 //UILabel sem accessibilityLabel → Não será lido corretamente.
 //Botão com menos de 44x44pt → Tamanho de toque inválido.
