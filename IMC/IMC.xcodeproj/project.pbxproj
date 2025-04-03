@@ -32,11 +32,6 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		3A3E324D2D9E3D35007ABFE4 /* AccesibilityUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AccesibilityUITests;
-			sourceTree = "<group>";
-		};
 		3AE9C9ED2D9490B50097E705 /* IMC */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -69,7 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				3AE9C9ED2D9490B50097E705 /* IMC */,
-				3A3E324D2D9E3D35007ABFE4 /* AccesibilityUITests */,
 				3AE9C9EC2D9490B50097E705 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,9 +92,6 @@
 			);
 			dependencies = (
 				3A3E32532D9E3D35007ABFE4 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				3A3E324D2D9E3D35007ABFE4 /* AccesibilityUITests */,
 			);
 			name = AccesibilityUITests;
 			packageProductDependencies = (
