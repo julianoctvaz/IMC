@@ -1,5 +1,5 @@
 //
-//  AccessibilitySwiftUIExampleContentView.swift
+//  SwiftUIExampleContentView.swift
 //  IMC
 //
 //  Created by Juliano on 03/04/25.

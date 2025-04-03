@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccessibilityLanguagesViewController: UIViewController {
+class LanguagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

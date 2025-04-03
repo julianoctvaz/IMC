@@ -1,5 +1,5 @@
 //
-//  DemoViewController.swift
+//  FontExampleViewController.swift
 //  IMC
 //
 //  Created by Juliano on 03/04/25.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DemoViewController: UIViewController {
+class FontExampleViewController: UIViewController {
     
     private let tituloLabel: UILabel = {
         let label = UILabel()
