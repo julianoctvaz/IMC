@@ -17,7 +17,7 @@ class ListandoMentoresViewController: UIViewController {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(
-            UITableViewCell.self,
+            ListandoMentoresTableViewCell.self,
             forCellReuseIdentifier: cellIdentifier
         )
         table.dataSource = self
@@ -66,16 +66,12 @@ extension ListandoMentoresViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: cellIdentifier,
             for: indexPath
-        )
+        ) as? ListandoMentoresTableViewCell
 
-        var configuration = cell.defaultContentConfiguration()
-
-        configuration.text = mentores[indexPath.row]
-
-        cell.contentConfiguration = configuration
+        cell?.nameLabel.text = mentores[indexPath.row]
 
 
-        return cell
+        return cell ?? UITableViewCell()
     }
 
 }
