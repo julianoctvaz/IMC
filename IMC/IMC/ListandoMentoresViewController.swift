@@ -21,6 +21,7 @@ class ListandoMentoresViewController: UIViewController {
             forCellReuseIdentifier: cellIdentifier
         )
         table.dataSource = self
+        table.delegate = self
         return table
     }()
 
@@ -74,6 +75,14 @@ extension ListandoMentoresViewController: UITableViewDataSource {
         return cell ?? UITableViewCell()
     }
 
+}
+
+extension ListandoMentoresViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        // implementa aqui comportamento para seleção da linha
+        print(mentores[indexPath.row])
+    }
 }
 
 #Preview {
