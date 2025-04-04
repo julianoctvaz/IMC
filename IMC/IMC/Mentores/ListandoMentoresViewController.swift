@@ -8,7 +8,6 @@
 import UIKit
 
 class ListandoMentoresViewController: UIViewController {
-    let cellIdentifier = "cell"
 
     // MARK: - Propriedades
     let mentores = ["Chico", "Juli", "Thaís", "Thales"]
@@ -18,7 +17,7 @@ class ListandoMentoresViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(
             ListandoMentoresTableViewCell.self,
-            forCellReuseIdentifier: cellIdentifier
+            forCellReuseIdentifier: ListandoMentoresTableViewCell.cellIdentifier
         )
         table.dataSource = self
         table.delegate = self
@@ -58,32 +57,7 @@ class ListandoMentoresViewController: UIViewController {
     }
 }
 
-extension ListandoMentoresViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mentores.count
-    }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: cellIdentifier,
-            for: indexPath
-        ) as? ListandoMentoresTableViewCell
-
-        cell?.nameLabel.text = mentores[indexPath.row]
-
-
-        return cell ?? UITableViewCell()
-    }
-
-}
-
-extension ListandoMentoresViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        // implementa aqui comportamento para seleção da linha
-        print(mentores[indexPath.row])
-    }
-}
 
 #Preview {
     ListandoMentoresViewController()

@@ -9,6 +9,8 @@ import UIKit
 
 class ListandoMentoresTableViewCell: UITableViewCell {
 
+    static let cellIdentifier = "cell"
+
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
