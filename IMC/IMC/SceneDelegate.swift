@@ -18,22 +18,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
 
-        let tabBarController = UITabBarController()
-        let rootNavigationController = UINavigationController(
-            rootViewController: ListandoMentoresViewController()
-        )
-        rootNavigationController.tabBarItem.image = UIImage(systemName: "eraser")
-        rootNavigationController.tabBarItem.selectedImage = UIImage(systemName: "eraser.fill")
-        rootNavigationController.tabBarItem.title = "Mentores"
+        // como seria implementação de um onBoarding
+        if UserDefaults.standard.bool(forKey: "hasShownOnboarding") {
+            let viewController = SmallestViewController()
+            self.window?.rootViewController = viewController
+            UserDefaults.standard.set(true, forKey: "hasShownOnboarding")
+        } else {
+            let tabBarController = UITabBarController()
+            let rootNavigationController = UINavigationController(
+                rootViewController: ListandoMentoresViewController()
+            )
+            rootNavigationController.tabBarItem.image = UIImage(systemName: "eraser")
+            rootNavigationController.tabBarItem.selectedImage = UIImage(systemName: "eraser.fill")
+            rootNavigationController.tabBarItem.title = "Mentores"
 
-        let imcViewController = IMCViewController(mass: 86, height: 184)
-        imcViewController.tabBarItem.image = UIImage(systemName: "person.circle")
-        imcViewController.tabBarItem.selectedImage = UIImage(systemName: "person.circle.fill")
-        imcViewController.tabBarItem.title = "IMC"
+            let imcViewController = IMCViewController(mass: 86, height: 184)
+            imcViewController.tabBarItem.image = UIImage(systemName: "person.circle")
+            imcViewController.tabBarItem.selectedImage = UIImage(systemName: "person.circle.fill")
+            imcViewController.tabBarItem.title = "IMC"
 
-        tabBarController.viewControllers = [rootNavigationController, imcViewController]
+            tabBarController.viewControllers = [rootNavigationController, imcViewController]
 
-        self.window?.rootViewController = tabBarController
+            self.window?.rootViewController = tabBarController
+        }
         self.window?.makeKeyAndVisible()
     }
 
