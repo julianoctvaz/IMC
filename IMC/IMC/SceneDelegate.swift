@@ -44,7 +44,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
 
-  
+    func sceneWillResignActive(_ scene: UIScene) {
+        self.window?.rootViewController?.view.isHidden = true
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        self.window?.rootViewController?.view.isHidden = false
+    }
+
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        self.window?.rootViewController?.view.isHidden = true
+    }
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        self.window?.rootViewController?.view.isHidden = false
+    }
 
 
 }
