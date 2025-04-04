@@ -35,10 +35,14 @@ extension ListandoMentoresViewController: UITableViewDelegate {
         let nextViewController = SmallestViewController()
         nextViewController.modalPresentationStyle = .fullScreen
 
-        show(nextViewController, sender: self)
+//        show(nextViewController, sender: self)
+
+        navigationController?.pushViewController(nextViewController, animated: true)
+
         /*
          // parecido com o show, mas pode configurar se
          //  surge animado ou não, e completionHandler.
+         // Adicionalmente, ignora a navigationController
         self.present(
             nextViewController,
             animated: true) {

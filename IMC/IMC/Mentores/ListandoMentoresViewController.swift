@@ -43,6 +43,8 @@ class ListandoMentoresViewController: UIViewController {
     }
 
     private func setupViewAttributes() {
+        self.title = "Mentores"
+        navigationController?.navigationBar.prefersLargeTitles = true
         tableView.backgroundColor = .red
         tableView.rowHeight = 80
     }
@@ -60,5 +62,8 @@ class ListandoMentoresViewController: UIViewController {
 
 
 #Preview {
-    ListandoMentoresViewController()
+    UINavigationController(
+        rootViewController:
+            ListandoMentoresViewController()
+    )
 }

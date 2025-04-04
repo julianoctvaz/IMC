@@ -18,10 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-//        let rootNavigationController = IMCViewController(mass: 50, height: 75)
-        let rootNavigationController = IMCViewController(mass: 50, height: 75)
-      
-        self.window?.rootViewController = ExemploTextfieldViewController() //rootNavigationController
+        let rootNavigationController = UINavigationController(
+            rootViewController: ListandoMentoresViewController()
+        )
+
+        self.window?.rootViewController = rootNavigationController
         self.window?.makeKeyAndVisible()
     }
 
