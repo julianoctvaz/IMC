@@ -62,8 +62,13 @@ class ListandoMentoresViewController: UIViewController {
 
 
 #Preview {
-    UINavigationController(
+    let tabController = UITabBarController()
+    let navController = UINavigationController(
         rootViewController:
             ListandoMentoresViewController()
     )
+    navController.tabBarItem.image = UIImage(systemName: "person.circle")
+    navController.tabBarItem.selectedImage = UIImage(systemName: "person.circle.fill")
+    tabController.viewControllers = [navController]
+    return tabController
 }

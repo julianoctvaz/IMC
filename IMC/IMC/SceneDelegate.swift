@@ -17,12 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        
+
+        let tabBarController = UITabBarController()
         let rootNavigationController = UINavigationController(
             rootViewController: ListandoMentoresViewController()
         )
+        rootNavigationController.tabBarItem.image = UIImage(systemName: "eraser")
+        rootNavigationController.tabBarItem.selectedImage = UIImage(systemName: "eraser.fill")
+        rootNavigationController.tabBarItem.title = "Mentores"
 
-        self.window?.rootViewController = rootNavigationController
+        let imcViewController = IMCViewController(mass: 86, height: 184)
+        imcViewController.tabBarItem.image = UIImage(systemName: "person.circle")
+        imcViewController.tabBarItem.selectedImage = UIImage(systemName: "person.circle.fill")
+        imcViewController.tabBarItem.title = "IMC"
+
+        tabBarController.viewControllers = [rootNavigationController, imcViewController]
+
+        self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
     }
 
