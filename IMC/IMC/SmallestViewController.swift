@@ -16,5 +16,8 @@ class SmallestViewController: UIViewController {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         dismiss(animated: true)
+        navigationController?.popToRootViewController(animated: true)
+        // se quiséssemos descer todos os níveis de navegação
+//        navigationController?.popToRootViewController(animated: true)
     }
 }

@@ -18,6 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
 
+        UITabBar.appearance().tintColor = .red
+        UITabBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .foregroundColor: UIColor.red
+        ]
+
         let tabBarController = UITabBarController()
         let rootNavigationController = UINavigationController(
             rootViewController: ListandoMentoresViewController()
