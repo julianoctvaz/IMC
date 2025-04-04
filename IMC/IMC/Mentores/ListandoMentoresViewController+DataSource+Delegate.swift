@@ -31,5 +31,19 @@ extension ListandoMentoresViewController: UITableViewDelegate {
 
         // implementa aqui comportamento para seleção da linha
         print(mentores[indexPath.row])
+
+        let nextViewController = SmallestViewController()
+        nextViewController.modalPresentationStyle = .fullScreen
+
+        show(nextViewController, sender: self)
+        /*
+         // parecido com o show, mas pode configurar se
+         //  surge animado ou não, e completionHandler.
+        self.present(
+            nextViewController,
+            animated: true) {
+                print("abriu a tela seguinte")
+            }
+         */
     }
 }
