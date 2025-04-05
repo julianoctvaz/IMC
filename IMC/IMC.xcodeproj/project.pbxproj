@@ -3,16 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3A3DBE2E2D884E4C0019EF22 /* IMCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DBE2D2D884E480019EF22 /* IMCView.swift */; };
 		3A3DBE322D884F590019EF22 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DBE312D884F530019EF22 /* ConverterView.swift */; };
+		3A438AE32DA0CAD1002EFF19 /* ConverterViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A438AE22DA0CAD1002EFF19 /* ConverterViewController+Delegate.swift */; };
+		3A7417932DA0C489004BF185 /* ViewCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7417922DA0C485004BF185 /* ViewCodeProtocol.swift */; };
+		3A7417952DA0C60B004BF185 /* IMCViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7417942DA0C60B004BF185 /* IMCViewControllerDelegate.swift */; };
+		3A74179D2DA0C686004BF185 /* IMCViewController+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74179C2DA0C686004BF185 /* IMCViewController+TextFieldDelegate.swift */; };
+		3A7417A32DA0C78C004BF185 /* ConverterViewController+PickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7417A22DA0C78C004BF185 /* ConverterViewController+PickerDataSource.swift */; };
 		8E2D6563274841BA003625B9 /* CoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D6562274841BA003625B9 /* CoordinatorManager.swift */; };
 		8E2D6566274841E1003625B9 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D6565274841E1003625B9 /* Coordinator.swift */; };
-		8EA1651A274EC1C900CBCB02 /* IMCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA16519274EC1C900CBCB02 /* IMCViewModel.swift */; };
-		8EC0FC622754E87C00B090C1 /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0FC612754E87C00B090C1 /* ConverterViewModel.swift */; };
 		8EDBEAEC2747D20700918BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEAEB2747D20700918BB3 /* AppDelegate.swift */; };
 		8EDBEAEE2747D20700918BB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEAED2747D20700918BB3 /* SceneDelegate.swift */; };
 		8EDBEAF02747D20700918BB3 /* IMCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEAEF2747D20700918BB3 /* IMCViewController.swift */; };
@@ -25,10 +28,13 @@
 /* Begin PBXFileReference section */
 		3A3DBE2D2D884E480019EF22 /* IMCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCView.swift; sourceTree = "<group>"; };
 		3A3DBE312D884F530019EF22 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
+		3A438AE22DA0CAD1002EFF19 /* ConverterViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+Delegate.swift"; sourceTree = "<group>"; };
+		3A7417922DA0C485004BF185 /* ViewCodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeProtocol.swift; sourceTree = "<group>"; };
+		3A7417942DA0C60B004BF185 /* IMCViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCViewControllerDelegate.swift; sourceTree = "<group>"; };
+		3A74179C2DA0C686004BF185 /* IMCViewController+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IMCViewController+TextFieldDelegate.swift"; sourceTree = "<group>"; };
+		3A7417A22DA0C78C004BF185 /* ConverterViewController+PickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterViewController+PickerDataSource.swift"; sourceTree = "<group>"; };
 		8E2D6562274841BA003625B9 /* CoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorManager.swift; sourceTree = "<group>"; };
 		8E2D6565274841E1003625B9 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		8EA16519274EC1C900CBCB02 /* IMCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCViewModel.swift; sourceTree = "<group>"; };
-		8EC0FC612754E87C00B090C1 /* ConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
 		8EDBEAE82747D20700918BB3 /* IMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDBEAEB2747D20700918BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EDBEAED2747D20700918BB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +45,11 @@
 		8EDBEB002747D9B000918BB3 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		8EDBEB062747DAE800918BB3 /* TemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3A74179A2DA0C643004BF185 /* IMC */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = IMC; sourceTree = "<group>"; };
+		3A74179B2DA0C64A004BF185 /* Converter */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Converter; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8EDBEAE52747D20700918BB3 /* Frameworks */ = {
@@ -54,6 +65,8 @@
 		3A3DBE2F2D884F290019EF22 /* IMC */ = {
 			isa = PBXGroup;
 			children = (
+				3A74179C2DA0C686004BF185 /* IMCViewController+TextFieldDelegate.swift */,
+				3A7417942DA0C60B004BF185 /* IMCViewControllerDelegate.swift */,
 				3A3DBE2D2D884E480019EF22 /* IMCView.swift */,
 				8EDBEAEF2747D20700918BB3 /* IMCViewController.swift */,
 			);
@@ -63,8 +76,10 @@
 		3A3DBE302D884F420019EF22 /* Converter */ = {
 			isa = PBXGroup;
 			children = (
+				3A7417A22DA0C78C004BF185 /* ConverterViewController+PickerDataSource.swift */,
 				3A3DBE312D884F530019EF22 /* ConverterView.swift */,
 				8EDBEB002747D9B000918BB3 /* ConverterViewController.swift */,
+				3A438AE22DA0CAD1002EFF19 /* ConverterViewController+Delegate.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -73,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				8E2D6562274841BA003625B9 /* CoordinatorManager.swift */,
+				8E2D6565274841E1003625B9 /* Coordinator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -80,8 +96,8 @@
 		8EA16518274EC1AF00CBCB02 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8EA16519274EC1C900CBCB02 /* IMCViewModel.swift */,
-				8EC0FC612754E87C00B090C1 /* ConverterViewModel.swift */,
+				3A74179A2DA0C643004BF185 /* IMC */,
+				3A74179B2DA0C64A004BF185 /* Converter */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -109,8 +125,6 @@
 				8EDBEAED2747D20700918BB3 /* SceneDelegate.swift */,
 				8EDBEAF62747D20800918BB3 /* LaunchScreen.storyboard */,
 				8EDBEAF42747D20800918BB3 /* Assets.xcassets */,
-				8EDBEB062747DAE800918BB3 /* TemplateView.swift */,
-				8E2D6565274841E1003625B9 /* Coordinator.swift */,
 				8EDBEAF92747D20800918BB3 /* Info.plist */,
 				8E2D65692748420F003625B9 /* Services */,
 				8EDBEB0B2747DB5100918BB3 /* View+Controllers */,
@@ -122,6 +136,8 @@
 		8EDBEB0B2747DB5100918BB3 /* View+Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8EDBEB062747DAE800918BB3 /* TemplateView.swift */,
+				3A7417922DA0C485004BF185 /* ViewCodeProtocol.swift */,
 				3A3DBE302D884F420019EF22 /* Converter */,
 				3A3DBE2F2D884F290019EF22 /* IMC */,
 			);
@@ -142,6 +158,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3A74179A2DA0C643004BF185 /* IMC */,
+				3A74179B2DA0C64A004BF185 /* Converter */,
 			);
 			name = IMC;
 			productName = IMC;
@@ -198,17 +218,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EA1651A274EC1C900CBCB02 /* IMCViewModel.swift in Sources */,
 				8E2D6566274841E1003625B9 /* Coordinator.swift in Sources */,
 				3A3DBE322D884F590019EF22 /* ConverterView.swift in Sources */,
+				3A7417952DA0C60B004BF185 /* IMCViewControllerDelegate.swift in Sources */,
 				8EDBEAF02747D20700918BB3 /* IMCViewController.swift in Sources */,
+				3A74179D2DA0C686004BF185 /* IMCViewController+TextFieldDelegate.swift in Sources */,
+				3A438AE32DA0CAD1002EFF19 /* ConverterViewController+Delegate.swift in Sources */,
 				8E2D6563274841BA003625B9 /* CoordinatorManager.swift in Sources */,
 				8EDBEB072747DAE800918BB3 /* TemplateView.swift in Sources */,
 				8EDBEB012747D9B000918BB3 /* ConverterViewController.swift in Sources */,
 				8EDBEAEC2747D20700918BB3 /* AppDelegate.swift in Sources */,
+				3A7417A32DA0C78C004BF185 /* ConverterViewController+PickerDataSource.swift in Sources */,
 				8EDBEAEE2747D20700918BB3 /* SceneDelegate.swift in Sources */,
 				3A3DBE2E2D884E4C0019EF22 /* IMCView.swift in Sources */,
-				8EC0FC622754E87C00B090C1 /* ConverterViewModel.swift in Sources */,
+				3A7417932DA0C489004BF185 /* ViewCodeProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,8 +372,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S9KQXCM7P8;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				INFOPLIST_FILE = IMC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -359,8 +383,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorldProject.IMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -369,8 +398,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S9KQXCM7P8;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				INFOPLIST_FILE = IMC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -379,8 +409,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = HelloWorldProject.IMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
