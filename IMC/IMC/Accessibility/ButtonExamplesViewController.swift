@@ -21,7 +21,7 @@ class ButtonExamplesViewController: UIViewController {
         // 👇 Esses são os campos usados pelo VoiceOver
          button.accessibilityLabel = "Botão de boas-vindas"
          button.accessibilityHint = "Toca para exibir uma saudação"
-         button.accessibilityTraits = .button
+        button.accessibilityTraits = .button
         return button
     }()
     
