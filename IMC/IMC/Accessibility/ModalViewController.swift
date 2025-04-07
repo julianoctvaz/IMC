@@ -7,7 +7,10 @@
 
 import UIKit
 
-//Extra: Habilita fechar fazendo gesto em Z (usado com VoiceOver)
+//Extra nessa class: Habilita fechar fazendo gesto em Z (usado com VoiceOver)
+//Desafio: Verificando em quais cenarios usar label.accessibilitySpeechPunctuation (emails, senhas..)
+//Desafio: Quando usar MagicTap?
+//Desafio: Quando usar zoomFocusChanged? O que é control focus há outras formas de trabalhar com isso?
 
 class ModalViewController: UIViewController {
     
