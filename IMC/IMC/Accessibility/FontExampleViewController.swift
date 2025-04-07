@@ -8,6 +8,8 @@
 
 import UIKit
 
+//Pontinhos de atencao no final da classe!
+
 class FontExampleViewController: UIViewController {
     
     private let tituloLabel: UILabel = {
@@ -25,13 +27,15 @@ class FontExampleViewController: UIViewController {
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .body)
         
-        // Suporte a Dynamic Type com fonte personalizada
+        // Suporte a Dynamic Type com fonte personalizada,
+        // no trecho comentado abaixo estamos settando o estilo de fonte .body para usar uma fonte personalizada (AvenirNext-Regular) com suporte a Dynamic Type
           /*  if let customFont = UIFont(name: "AvenirNext-Regular", size: 17) {
                 label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
             } else {
                 label.font = UIFont.preferredFont(forTextStyle: .body)
             }
         */
+        
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -43,7 +47,8 @@ class FontExampleViewController: UIViewController {
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         
-        //No caso de fonte customizada para testar tipo dinamico
+        // Suporte a Dynamic Type com fonte personalizada,
+        // no trecho comentado abaixo estamos settando o estilo de fonte .headline para usar uma fonte personalizada (AvenirNext-Regular) com suporte a Dynamic Type
        /* if let customFont = UIFont(name: "AvenirNext-Bold", size: 18) {
             button.titleLabel?.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: customFont)
         } else {
@@ -61,11 +66,44 @@ class FontExampleViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        overrideUserInterfaceStyle = .dark // ou .light ou .unspecified for
+        overrideUserInterfaceStyle = .dark // ou .light ou .unspecified (Aqui forcamos o estilo!)
+
         
+        setupUIStyleAndConstraints()
+        
+        // Cria de navegação personalizada para voiceOver
+        view.accessibilityElements = [tituloLabel, descricaoLabel, confirmarBotao]
+        
+        // Notificação via VoiceOver (após delay para simular evento)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIAccessibility.post(notification: .announcement, argument: "Tela carregada com sucesso")
+            //exemplo uso de post com announcement, mas temos outros tipos de notificacao
+        }
+        
+        if UIAccessibility.isDarkerSystemColorsEnabled {
+            print("Modo de alto contraste não está ativado")
+        } else {
+            print("Modo de alto contraste está ativado")
+        }
+        
+        // Registrar para observar mudanças de traits (algumas caracteristicas da nossa interface de estilo)
+        registerForTraitChanges([UITraitUserInterfaceStyle.self,
+                                UITraitPreferredContentSizeCategory.self,
+                                UITraitAccessibilityContrast.self]) { (self: Self, previousTraitCollection: UITraitCollection?) in
+            self.handleTraitChanges(previousTraitCollection: previousTraitCollection)
+        }
+    }
+    
+    
+    // MARK: - Setup UI
+    
+    
+    private func setupUIStyleAndConstraints() {
         view.backgroundColor = .systemBackground
         view.addSubview(tituloLabel)
         view.addSubview(descricaoLabel)
@@ -84,36 +122,20 @@ class FontExampleViewController: UIViewController {
             confirmarBotao.widthAnchor.constraint(equalToConstant: 200),
             confirmarBotao.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        // 4) Ordem de navegação personalizada
-        view.accessibilityElements = [tituloLabel, descricaoLabel, confirmarBotao]
-        
-        // 5) Notificação via VoiceOver (após delay para simular evento)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            UIAccessibility.post(notification: .announcement, argument: "Tela carregada com sucesso")
-        }
-        
-        if UIAccessibility.isDarkerSystemColorsEnabled {
-            print("Modo de alto contraste não está ativado")
-        } else {
-            print("Modo de alto contraste está ativado")
-        }
     }
     
-    // 6) Detecção do modo escuro ou claro
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
+    // Se quiser fazer ad etecção do modo escuro ou claro
+    private func handleTraitChanges(previousTraitCollection: UITraitCollection?) {
         if traitCollection.userInterfaceStyle == .dark {
             print("🌙 Modo Escuro Ativo")
         } else {
             print("☀️ Modo Claro Ativo")
         }
         
-        // Verifica tamanho da fonte atual
+        // Se quiser verificar o tamanho da fonte atual
         print("Tamanho da fonte preferido: \(traitCollection.preferredContentSizeCategory.rawValue)")
         
-        // Verifica se o modo alto contraste está ativo (iOS 13+)
+        // Se quiser verificar se o modo alto contraste está ativo (iOS 13+)
         if traitCollection.accessibilityContrast == .high {
             print("⚠️ Alto contraste está ativado")
         }
@@ -121,8 +143,8 @@ class FontExampleViewController: UIViewController {
     
 }
 
-// Observação:
-// - Use o Accessibility Inspector para verificar contraste entre cor do texto e fundo.
-// - Cores definidas com UIColor.label, systemBackground etc. se adaptam automaticamente.
-// - Se usar UIColor personalizada (via .setColor), faça uso de asset catalog com variantes Light/Dark.
-// - Fontes personalizadas também podem suportar Dynamic Type com UIFontMetrics. Se não usar UIFontMetrics, o tamanho não irá escalar com o ajuste do usuário.
+// ATENCAO 👀:
+//  Use o Accessibility Inspector para verificar contraste entre cor do texto e fundo.
+//  Cores definidas com UIColor.label, systemBackground etc. se adaptam automaticamente.
+//  Se usar UIColor personalizada (via .setColor), faça uso de asset catalog com variantes Light/Dark.
+//  Fontes personalizadas também podem suportar Dynamic Type com UIFontMetrics. Se NAO usar UIFontMetrics, o tamanho não irá escalar com o ajuste do usuário.

@@ -8,7 +8,7 @@
 
 import UIKit
 
-//✅ Sobre nossa classe herdada: Quando vale a pena usar UIViewController em vez dos controllers especializados?
+// Sobre nossa classe herdada: Quando vale a pena usar UIViewController em vez dos controllers especializados?
 //
 //Use UIViewController quando:
 //Você precisa mais controle sobre o layout (ex: colocar botões, labels, outras views fora da tabela/coleção).
@@ -31,8 +31,8 @@ class FruitsTableViewController: UITableViewController {
         title = "Frutas"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FruitCell")
 
-        // Para usar self-sizing cells com Auto Layout
-        tableView.rowHeight = UITableView.automaticDimension
+        // Para usar self-sizing cells com Auto Layout (mas tem como fazer manual, como ja vimos, ou fazer calculos para esstimar, apesar dessa ultima forma ser mais propenso a erros)!
+        tableView.rowHeight = UITableView.automaticDimension //Setando altura automatica
         tableView.estimatedRowHeight = 60 // Estimativa para ajudar na performance
     }
 
@@ -49,7 +49,8 @@ class FruitsTableViewController: UITableViewController {
         cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         cell.textLabel?.adjustsFontForContentSizeCategory = true // Suporte a tamanhos dinâmicos (Acessibilidade)
 
-        // Acessibilidade personalizada
+        // Acessibilidade personalizada! Aqui tornamos nossa celular acessivel! Poderiamos fazer uma funcao separada como na FruitCollectionViewController.
+        
         cell.isAccessibilityElement = true
         cell.accessibilityLabel = "Fruta: \(fruit)"
         cell.accessibilityHint = "Deslize para cima ou para baixo para mais opções"
@@ -57,15 +58,28 @@ class FruitsTableViewController: UITableViewController {
         return cell
     }
 
-    // MARK: - Swipe actions
+    // MARK: - Swipe actions (já automaticamente acessível via VoiceOver)
 
     override func tableView(_ tableView: UITableView,
-                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+                          trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
 
+        // Cria ação de exclusão com estilo destrutivo! Via Esquerda! Trailing!
         let deleteAction = UIContextualAction(style: .destructive,
-                                              title: "Excluir") { [weak self] action, view, completion in
-            guard let self = self else { return }
+                                            title: "Excluir") {
+            [weak self] action, view, completion in
+            // Veremos no futuro, mas usamos [weak self] para evitar retain cycle (retencao de ciclo na memoria do iOS), já que a closure será armazenada numa variavel, entao
+            // O guard let verifica se a view controller ainda existe, isto é, verifica se a tela ainda está aberta quando o usuário clicar, quando a ação for executada:
+            guard let self = self else {
+                completion(false)
+                // Importante chamar completion handler aqui, mas nao é obg! ele é do tipo (Bool) -> Void
+                // Se nao puder fazer a acao, para indicar que a ação não foi completada enviamos false
+                return
+            }
+            
+            // Implementação da ação de exclusão virá aqui
+            // self pode ser usado com SEGURANÇA agora!
+            
             print("🗑️ Excluindo \(self.fruits[indexPath.row])")
             self.fruits.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -74,33 +88,9 @@ class FruitsTableViewController: UITableViewController {
 
         deleteAction.backgroundColor = .systemRed
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+//        finalmente devolvemos aqui a acao configurada
         return configuration
     }
-
-    // MARK: - Ajuste manual de altura da célula (método alternativo)
-
-    // Essa abordagem é mais performática mas mais propensa a erros
-    // Pode ser usada quando Auto Layout for pesado demais
-    // Comente/descomente para testar
-
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let text = fruits[indexPath.row]
-//        let width = tableView.frame.width - 32
-//        let font = UIFont.systemFont(ofSize: 17)
-//        let boundingRect = NSString(string: text).boundingRect(
-//            with: CGSize(width: width, height: .greatestFiniteMagnitude),
-//            options: .usesLineFragmentOrigin,
-//            attributes: [.font: font],
-//            context: nil
-//        )
-//        return ceil(boundingRect.height + 16)
-//    }
-
-    // Essa questão é común em entrevistas pois testa:
-    // - Conhecimento de Auto Layout
-    // - Uso correto de fontes dinâmicas
-    // - Trade-off entre performance x simplicidade
-    // O ideal é usar self-sizing cells sempre que possível e recorrer ao heightForRow apenas se houver problemas de performance.
 }
 
 #Preview {

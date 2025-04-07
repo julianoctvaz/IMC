@@ -9,32 +9,42 @@
 import UIKit
 
 class LanguagesViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    let localizedButton = UIButton(type: .system)
+    let ptButton = UIButton(type: .system)
+    let enButton = UIButton(type: .system)
+    
+    // MARK: - ALL 2gether ☠️
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         view.backgroundColor = .white
 
         // 1. Botão com accessibilityLabel usando NSLocalizedString (respeita idioma do app)
-        let localizedButton = UIButton(type: .system)
         let localizedTitle = NSLocalizedString("button_localized", comment: "Título do botão que muda com o idioma do app")
+        //chamos aqui no NSLocalizedString o value que consta no no arquivo Localizable.strings ou que poderia ser Localizable.xcstrings (eles pegam a variante por idioma)
         localizedButton.setTitle(localizedTitle, for: .normal)
         localizedButton.accessibilityLabel = localizedTitle
         localizedButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(localizedButton)
 
         // 2. Botão com accessibilityAttributedLabel forçando leitura em pt-BR
-        let ptButton = UIButton(type: .system)
+        
         ptButton.setTitle("Forçado pt-BR", for: .normal)
         ptButton.translatesAutoresizingMaskIntoConstraints = false
-        let ptString = NSAttributedString(
+        let ptString = NSAttributedString( //Aqui esse atrbuto forca!!!
             string: "Olá! Essa mensagem será lida em português.",
             attributes: [.accessibilitySpeechLanguage: "pt-BR"]
+//            O .accessibilitySpeechLanguage tem precedência (prioridade) sobre outras configurações
+//            ele sobrescreve até configurações personalizadas do usuário no VoiceOver
         )
-        ptButton.accessibilityAttributedLabel = ptString
+        ptButton.accessibilityAttributedLabel = ptString //Seta atributo da label (IMPORTANTE)
         view.addSubview(ptButton)
 
         // 3. Botão com accessibilityAttributedLabel forçando leitura em en-US
-        let enButton = UIButton(type: .system)
         enButton.setTitle("Forced en-US", for: .normal)
         enButton.translatesAutoresizingMaskIntoConstraints = false
         let enString = NSAttributedString(

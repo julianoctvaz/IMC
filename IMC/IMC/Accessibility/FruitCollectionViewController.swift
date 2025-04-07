@@ -8,10 +8,10 @@
 
 import UIKit
 
-//✅ Quando vale a pena usar UIViewController em vez dos controllers especializados?
+// Quando vale a pena usar UIViewController em vez dos controllers especializados?
 //
-//Use UIViewController quando:
-//Você precisa mais controle sobre o layout (ex: colocar botões, labels, outras views fora da tabela/coleção).
+//vamos  usasr via UIViewController quando:
+//Se voce precisa mais controle sobre o layout (ex: colocar botões, labels, outras views fora da tabela/coleção).
 //Você quer integrar vários componentes na mesma tela, não só uma lista.
 //Você prefere construir tudo com ViewCode.
 
@@ -65,11 +65,11 @@ class FruitCollectionViewController: UICollectionViewController, UICollectionVie
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FruitCell", for: indexPath) as! FruitCell
         let fruit = fruits[indexPath.item]
-        cell.configure(with: fruit)
+        cell.configureAccessibility(with: fruit) //ATENCAO: Aqui tornamos nossa celular acessivel!!!
         return cell
     }
 
-    // MARK: - Context Menu para ações como excluir (acessível via VoiceOver)
+    // MARK: - Context Menu para ações como excluir (já automaticamente acessível via VoiceOver)
 
     override func collectionView(_ collectionView: UICollectionView,
                                  contextMenuConfigurationForItemAt indexPath: IndexPath,
@@ -95,19 +95,24 @@ class FruitCell: UICollectionViewCell {
 
     private let label = UILabel()
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupUIStyleAndConstraints()
+    }
+
+    func setupUIStyleAndConstraints() {
         contentView.backgroundColor = .systemYellow
         contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = true
-
+        
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
-
+        
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
@@ -115,8 +120,8 @@ class FruitCell: UICollectionViewCell {
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
         ])
     }
-
-    func configure(with fruit: String) {
+    
+    func configureAccessibility(with fruit: String) {
         label.text = fruit
 
         // Acessibilidade: tornar a célula inteira acessível

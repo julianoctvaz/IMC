@@ -13,7 +13,6 @@
 //Rode esse VC no simulador, abra o Accessibility Inspector → aba Audit, e você verá os alertas sendo detectados.
 
 
-
 import UIKit
 
 class AuditCasesViewController: UIViewController {

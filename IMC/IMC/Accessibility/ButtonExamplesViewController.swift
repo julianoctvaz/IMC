@@ -16,9 +16,9 @@ class ButtonExamplesViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
-        button.accessibilityIdentifier = "GreetingButton" //👈 importante!
+        button.accessibilityIdentifier = "GreetingButton" // importante, para podermos focar nesse elemento com voiceOver a partir de alguma funcao e para testes automatizados
         
-        // 👇 Esses são os campos usados pelo VoiceOver
+        // 👇 Esses são os campos usados pelo VoiceOver!
          button.accessibilityLabel = "Botão de boas-vindas"
          button.accessibilityHint = "Toca para exibir uma saudação"
         button.accessibilityTraits = .button
@@ -36,7 +36,7 @@ class ButtonExamplesViewController: UIViewController {
         
         label.accessibilityTraits = .staticText
         
-//        switch.accessibilityValue = "Ativado" ou slider!
+//        switch.accessibilityValue = "Ativado" (no caso do swift) ou slider (fala o valor)!
         return label
     }()
 
@@ -48,9 +48,10 @@ class ButtonExamplesViewController: UIViewController {
         stack.distribution = .equalCentering
         stack.translatesAutoresizingMaskIntoConstraints = false
         
-        stack.isAccessibilityElement = false // Geralmente a UIStackView não é um elemento de acessibilidade
+        stack.isAccessibilityElement = false
+        // Geralmente a UIStackView não é um elemento de acessibilidade
         
-//        👉 Mas se você quiser que a stack seja lida como uma única entidade, pode fazer isso:
+//        👉 Maaaass se você quiser que a stack seja lida como uma única entidade, pode fazer isso:
         
 //        stack.isAccessibilityElement = true
 //        stack.accessibilityLabel = "Mensagem e botão"
@@ -61,6 +62,8 @@ class ButtonExamplesViewController: UIViewController {
         return stack
     }()
 
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,8 @@ class ButtonExamplesViewController: UIViewController {
         logAccessibilityHierarchy(from: self.view)
     }
 
+    
+    // MARK: - UI Setup
     private func setupLayout() {
          view.addSubview(horizontalStack)
 
@@ -85,6 +90,9 @@ class ButtonExamplesViewController: UIViewController {
              greetingButton.heightAnchor.constraint(equalToConstant: 44)
          ])
      }
+    
+    
+    // MARK: - Actions
 
     @objc private func buttonTapped() {
         print("Botão foi tocado!")
@@ -94,6 +102,9 @@ class ButtonExamplesViewController: UIViewController {
 
     }
     
+    
+    // MARK: - Logging
+    
     func logAccessibilityHierarchy(from view: UIView, level: Int = 0) {
         let indent = String(repeating: "  ", count: level)
         let className = String(describing: type(of: view))
@@ -101,13 +112,17 @@ class ButtonExamplesViewController: UIViewController {
         let label = view.accessibilityLabel ?? "nil"
         let isElement = view.isAccessibilityElement
         let isVisible = !view.isHidden && view.alpha > 0.01
-/* isHittable é uma propriedade de XCUIElement (usada em UI Tests, não em UIView). No seu ViewController.swift (target do app), você está lidando com UIView, que não tem isHittable diretamente.  MAS: dá pra checar o equivalente com view.isUserInteractionEnabled && !view.isHidden && view.alpha > 0 (uma aproximação razoável). */
+        
         let isHittable = isVisible && view.isUserInteractionEnabled
+        
+        /* No futuro, veremos que o isHittable aqui em baixo é uma propriedade de XCUIElement (usada em UI Tests, não em UIView).
+         No seu ViewController.swift (target do app), você está lidando com UIView, que não tem isHittable diretamente.  MAS: dá pra checar o equivalente com view.isUserInteractionEnabled && !view.isHidden && view.alpha > 0 (uma aproximação razoável).  :) */
 
         print("\(indent)🔹 \(className) | identifier: \(id) | label: \(label) | isAccessibilityElement: \(isElement) | isHittable: \(isHittable)")
         
         for subview in view.subviews {
             logAccessibilityHierarchy(from: subview, level: level + 1)
+//            funcao recursiva! simliar a do Inspetor de Acessibilidade
         }
     }
 }
