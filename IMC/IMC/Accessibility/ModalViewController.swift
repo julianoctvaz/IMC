@@ -46,7 +46,23 @@ class ModalViewController: UIViewController {
     // MARK: - UI SETUP
     
     private func setupUIStyleAndConstraints() {
-        view.backgroundColor = .systemBackground
+//        / Fundo translúcido usando material effect
+            let blurEffect = UIBlurEffect(style: .systemMaterial) // você pode trocar por .systemUltraThinMaterial, .systemThickMaterial etc.
+            let blurView = UIVisualEffectView(effect: blurEffect)
+            blurView.frame = view.bounds
+            blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        garantir que o blurView se redimensione automaticamente se a view principal mudar de tamanho
+            view.addSubview(blurView)
+        
+        // com uma imgem de fundo fica melhor de visualziar
+        
+        // Caso deseje, pode colocar camada colorida semi-transparente por cima do blur (pra realçar o efeito)
+            let coloredOverlay = UIView(frame: view.bounds)
+            coloredOverlay.backgroundColor = UIColor.systemTeal.withAlphaComponent(0.2) // pode ajustar a cor e a opacidade
+            coloredOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        mesma coisa d alinha 54 so que para o overlay
+            view.addSubview(coloredOverlay)
+        
         
         // conteúdo dentro do modal
         
@@ -59,6 +75,7 @@ class ModalViewController: UIViewController {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.addTarget(self, action: #selector(fecharModal), for: .touchUpInside)
         
+        // adiciona os elementos por cima da blur view
         view.addSubview(label)
         view.addSubview(closeButton)
         
@@ -84,8 +101,8 @@ class AbreModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-
+        view.backgroundColor = .systemGreen
+        
         let openModalButton = UIButton(type: .system)
         openModalButton.setTitle("Abrir Modal", for: .normal)
         openModalButton.titleLabel?.font = .systemFont(ofSize: 20)
