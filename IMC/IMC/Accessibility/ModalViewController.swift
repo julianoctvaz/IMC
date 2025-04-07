@@ -7,6 +7,8 @@
 
 import UIKit
 
+//Extra: Habilita fechar fazendo gesto em Z (usado com VoiceOver)
+
 class ModalViewController: UIViewController {
     
 //    O accessibilityViewIsModal é uma propriedade importante para acessibilidade que controla como o VoiceOver interage com elementos visuais sobrepostos.
@@ -93,6 +95,12 @@ class ModalViewController: UIViewController {
     @objc func fecharModal() {
         UIAccessibility.post(notification: .screenChanged, argument: nil) //  ajuda o VoiceOver a saber q a tela fechou (mudou)
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func accessibilityPerformEscape() -> Bool {
+        // Habilita fechar fazendo gesto em Z (usado com VoiceOver)
+        fecharModal() // mesma ação do botão
+        return true // indica que o gesto foi tratado com sucesso
     }
 }
 
