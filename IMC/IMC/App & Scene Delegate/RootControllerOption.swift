@@ -18,6 +18,7 @@ enum RootControllerOption {
     case fruitsTable
     case fruitCollection
     case modal
+    case alice
 
     var viewController: UIViewController {
         switch self {
@@ -41,6 +42,8 @@ enum RootControllerOption {
             return FruitCollectionViewController()
         case .modal:
             return AbreModalViewController()
+        case .alice:
+            return MyViewController()
         }
     }
 }
