@@ -23,7 +23,9 @@ class CustomCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        contentView.addSubview(actionButton)
+        //self.addSubview(actionButton)  // cuidado ao fazer com isso!!!!
+        contentView.addSubview(actionButton) //melhor prática de ser feita
+        
         NSLayoutConstraint.activate([
             actionButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             actionButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
