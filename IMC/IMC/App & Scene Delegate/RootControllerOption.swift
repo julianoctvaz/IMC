@@ -10,14 +10,6 @@ import UIKit
 enum RootControllerOption {
     case imc
     case exemploTextField
-    case buttonExamples
-    case customAction
-    case auditCases
-    case languages
-    case fontExample
-    case fruitsTable
-    case fruitCollection
-    case modal
     case alice
 
     var viewController: UIViewController {
@@ -26,22 +18,6 @@ enum RootControllerOption {
             return IMCViewController(mass: 70, height: 175)
         case .exemploTextField:
             return ExemploTextfieldViewController()
-        case .buttonExamples:
-            return ButtonExamplesViewController()
-        case .customAction:
-            return ViewControllerWithCustomAction()
-        case .auditCases:
-            return AuditCasesViewController()
-        case .languages:
-            return LanguagesViewController()
-        case .fontExample:
-            return FontExampleViewController()
-        case .fruitsTable:
-            return FruitsTableViewController()
-        case .fruitCollection:
-            return FruitCollectionViewController()
-        case .modal:
-            return AbreModalViewController()
         case .alice:
             return MyViewController()
         }

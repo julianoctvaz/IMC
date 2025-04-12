@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let selectedRoot: RootControllerOption = .customAction
+        let selectedRoot: RootControllerOption = .alice
         
         self.window?.rootViewController = selectedRoot.viewController
         
